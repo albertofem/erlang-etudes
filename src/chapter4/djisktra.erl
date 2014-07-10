@@ -1,8 +1,6 @@
-
 -module(djisktra).
 -author("albertofem").
 
-%% API
 -export([
   gcd/2,
   gcd_if/2
