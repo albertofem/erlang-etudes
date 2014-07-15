@@ -4,7 +4,8 @@
 -export([
   minimum/1,
   minimum_if/1,
-  maximum/1
+  maximum/1,
+  julian/1
 ]).
 
 -spec(minimum(list()) -> number()).

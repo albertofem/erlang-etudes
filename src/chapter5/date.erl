@@ -1,7 +1,6 @@
 -module(date).
 -author("albertofem").
 
-%% API
 -export([
   date_parts/1
 ]).
