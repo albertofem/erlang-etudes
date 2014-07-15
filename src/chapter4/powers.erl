@@ -4,8 +4,7 @@
 -export([
   raise/2,
   raise_if/2,
-  raise_acum/2,
-  nth_root/2
+  raise_acum/2
 ]).
 
 %%% 4.1 - 4.3
