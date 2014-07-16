@@ -14,20 +14,13 @@ julian(Date) ->
 
 -spec(julian(number(), number(), number(), list(), number()) -> number()).
 
-julian(Year, Month, Day, DaysPerMonth, Total) ->
-  ListLength = length(DaysPerMonth),
+julian(Year, Month, Day, DaysPerMonth, Total) when Month > 13 - length(DaysPerMonth) ->
   [CurrentMonth|RestOfMonths] = DaysPerMonth,
-  IsLapYear = is_leap_year(Year),
-  Position = 13-ListLength,
-  IsFebruaryInLeapYear = (Month == 2 andalso IsLapYear),
-  if
-    IsFebruaryInLeapYear -> NewTotal = Total+CurrentMonth-Day+1;
-    Position < Month -> NewTotal = Total+CurrentMonth;
-    Position == Month -> NewTotal = Total+CurrentMonth-Day
-  end,
-  case Position == Month of
-    true -> Total;
-    false -> julian(Year, Month, Day, RestOfMonths, NewTotal)
+  julian(Year, Month, Day, RestOfMonths, Total + CurrentMonth);
+julian(Year, Month, Day, _, Total) ->
+  case Month > 2 andalso is_leap_year(Year) of
+    true -> Total + Day + 1;
+    false -> Total + Day
   end.
 
 -spec(is_leap_year(number()) -> boolean()).
